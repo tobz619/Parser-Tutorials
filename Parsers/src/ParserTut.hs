@@ -361,9 +361,10 @@ data Expr = App Expr Expr           -- application
           | Let String Expr Expr    -- local definition
           | Var String              -- variable
     deriving Show
-pExpr = atom `chainl1` result App
 
 atom =  lam +++ local +++ var +++ paren
+
+pExpr = atom `chainl1` result App
 
 lam = do _ <- symbol "\\"
          x <- variable
